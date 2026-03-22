@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pakistan Forest Trees Carbon Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <script>
+    // Embedded Data from extraction
+    const STRINGS = ["Tree Species", "Tamarix aphylla", "Populus ciliata", "Eucalyptus camaldulensis", "Acacia nilotica", "Cordia myxa", "Salix tetrasperma", "Bombax cieba", "Populus deltoides", "Ficus carica", "Melia azedarach", "Aesculus indica", "Betula utilis", "Camellia japonica", "Phoenix dactylifera", "Phyllanthus emblica", "Juglans regia", "Ailanthus altissima", "Celtis eriocarpa", "Morus alba", "Acacia senegal", "Acer caesium", "Albizzia lebbek", "Bauhinia variegata", "Broussonetia papyrifera", "Caragana ambigua", "Cassia fistula", "Citrus limetta", "Ficus glomerata", "Fraxinus hookeri", "Mallotus phillipennesis", "Moringa pterygosperma", "Pistacia integerrima", "Plantaga lanceolata", "Platanus orientalis", "Populus euphratica", "Prunus armeniaca", "Prunus cornuta", "Prunus dulcis", "Prunus padus", "Sapindus mukorossi", "Tamarindus indica", "Tamarix dioca", "Wendlandia heynei", "Salvadora oleoides", "Machilus duthiei", "Malus domestica", "Prunus domestica", "Prunus persica", "Robinia pseudoacacia", "Azadirachta indica", "Pyrus pashia", "Grewia optiva", "Capparis aphylla", "Diospyros lotus", "Flacourtia indica", "Pistacia khinjuk", "Syzygium cumini", "Dalbergia sissoo", "Punica granatum", "Prosopis juliflora", "Acacia catechu", "Monotheca buxifolia", "Olea europaea", "Quercus dilatata", "Quercus ilex", "Quercus incana", "Prosopis cineraria", "Acacia modesta", "Olea ferruginea", "Zizyphus mauritiana", "AGB Model", "0.00673*(0.64*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Dbh1])^0.976", "0.0194*((\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.9654", "0.023*((\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.9985", "0.0569*((\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.9745", "0.0673*(0.33*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.34*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.35*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.417*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.44*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.451*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.465*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.5*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.533*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.536*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.549*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.578*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.58*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.594*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.6*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.61*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.62*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.64*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.646*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.69*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.71*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.748*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.76*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Dbh1])^0.976", "0.0673*(0.76*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.771*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.8*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.801*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.851*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0673*(0.89*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.976", "0.0795*((\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.9688", "0.112*(0.663*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc])^0.916", "0.2267*(\u0027Tree\u0027[Dbh1]^2*\u0027Tree\u0027[Treeheight_Acc])^0.8226", "7.8863+0.0556*(\u0027Tree\u0027[Dbh1]^2)*\u0027Tree\u0027[Treeheight_Acc]", "Exp((-9.46108+0.52923*Ln(\u0027Tree\u0027[Treeheight_Acc])+2.15113*Ln(\u0027Tree\u0027[Dbh1])))*0.8*1.4*1000", "Cedrus deodara (deodar)", "0.0491(D²H)^0.9167", "Pinus wallichiana (kail)", " 0.0594(D²H)^0.881", "Pinus roxburghii (chirpine)", "0.0224(D²H)^0.9767", "Pinus gerardiana (chilghoza)", "0.0253D^2.6077", "Abies pindrow (fir)", " 0.0452(D²H)^0.9029", "Picea smithiana (spruce)", " 0.0821(D²H)^0.8363", " 0.023(D²H)^0.9985", "Quercus ilex (oak)", "0.8277(D²H)^0.6655"];
+
+    // Manual mapping from sheet
+    const MAPPING = [{ "s": 1, "f": 72 }, { "s": 2, "f": 73 }, { "s": 3, "f": 74 }, { "s": 4, "f": 75 }, { "s": 5, "f": 76 }, { "s": 6, "f": 77 }, { "s": 7, "f": 78 }, { "s": 8, "f": 79 }, { "s": 9, "f": 80 }, { "s": 10, "f": 81 }, { "s": 11, "f": 82 }, { "s": 12, "f": 83 }, { "s": 13, "f": 83 }, { "s": 14, "f": 83 }, { "s": 15, "f": 83 }, { "s": 16, "f": 84 }, { "s": 17, "f": 85 }, { "s": 18, "f": 86 }, { "s": 19, "f": 87 }, { "s": 20, "f": 88 }, { "s": 21, "f": 88 }, { "s": 22, "f": 88 }, { "s": 23, "f": 88 }, { "s": 24, "f": 88 }, { "s": 25, "f": 88 }, { "s": 26, "f": 88 }, { "s": 27, "f": 88 }, { "s": 28, "f": 88 }, { "s": 29, "f": 88 }, { "s": 30, "f": 88 }, { "s": 31, "f": 88 }, { "s": 32, "f": 88 }, { "s": 33, "f": 88 }, { "s": 34, "f": 88 }, { "s": 35, "f": 88 }, { "s": 36, "f": 88 }, { "s": 37, "f": 88 }, { "s": 38, "f": 88 }, { "s": 39, "f": 88 }, { "s": 40, "f": 88 }, { "s": 41, "f": 88 }, { "s": 42, "f": 88 }, { "s": 43, "f": 88 }, { "s": 44, "f": 89 }, { "s": 45, "f": 90 }, { "s": 46, "f": 91 }, { "s": 47, "f": 91 }, { "s": 48, "f": 91 }, { "s": 49, "f": 91 }, { "s": 50, "f": 92 }, { "s": 51, "f": 93 }, { "s": 52, "f": 94 }, { "s": 53, "f": 95 }, { "s": 54, "f": 96 }, { "s": 55, "f": 97 }, { "s": 56, "f": 97 }, { "s": 57, "f": 98 }, { "s": 58, "f": 99 }, { "s": 59, "f": 100 }, { "s": 60, "f": 101 }, { "s": 61, "f": 102 }, { "s": 62, "f": 103 }, { "s": 63, "f": 104 }, { "s": 64, "f": 105 }, { "s": 65, "f": 105 }, { "s": 66, "f": 105 }, { "s": 67, "f": 106 }, { "s": 68, "f": 107 }, { "s": 69, "f": 108 }, { "s": 70, "f": 109 }, { "s": 110, "f": 111 }, { "s": 112, "f": 113 }, { "s": 114, "f": 115 }, { "s": 116, "f": 117 }, { "s": 118, "f": 119 }, { "s": 120, "f": 121 }, { "s": 3, "f": 122 }, { "s": 123, "f": 124 }];
+
+    function cleanFormula(formula) {
+      if (!formula) return "";
+      let f = formula.trim();
+
+      // Replace variable names from Excel syntax to simple variables
+      f = f.replace(/'Tree'\[Dbh1\]/g, "D");
+      f = f.replace(/'Tree'\[Treeheight_Acc\]/g, "H");
+
+      // Replace Special Characters and Syntax
+      // Handle D²H -> (D*D*H) or (D^2*H)
+      f = f.replace(/D²H/g, "(D*D*H)");
+      f = f.replace(/D\^2(?!\.)/g, "(D*D)");
+
+      // Implicit multiplication replacements
+      // 0.0491( -> 0.0491*(
+      f = f.replace(/(\d)\(/g, "$1*(");
+      // )D -> )*D
+      f = f.replace(/\)D/g, ")*D");
+      // D( -> D*(
+      f = f.replace(/D\(/g, "D*(");
+      // number D -> number * D
+      f = f.replace(/(\d)D/g, "$1*D");
+
+      // Replace power operator
+      f = f.replace(/\^/g, "**");
+
+      // Replace Math functions
+      f = f.replace(/Exp/gi, "Math.exp");
+      f = f.replace(/Ln/gi, "Math.log");
+
+      return f;
+    }
+
+    function calculate() {
+      const speciesIndex = document.getElementById('species').value;
+      const dbh = parseFloat(document.getElementById('dbh').value);
+      const height = parseFloat(document.getElementById('height').value);
+
+      if (!speciesIndex || isNaN(dbh) || isNaN(height)) {
+        return;
+      }
+
+      // Find formula
+      const mapItem = MAPPING.find(m => m.s == speciesIndex);
+      if (!mapItem) return;
+
+      const rawFormula = STRINGS[mapItem.f];
+      const jsFormula = cleanFormula(rawFormula);
+
+      try {
+        // Safe evaluation context
+        const D = dbh;
+        const H = height;
+        // Eval is generally unsafe but here the input is strictly controlled from our internal strings.
+        // We are not evaling user input directly, only the transformed formula.
+        const biomass = eval(jsFormula);
+
+        const carbonStock = biomass * 0.47;
+        const carbonCreditsKg = carbonStock * 3.63;
+        const carbonCreditsTons = carbonCreditsKg / 1000;
+
+        document.getElementById('biomass').textContent = biomass.toFixed(2);
+        document.getElementById('carbonStock').textContent = carbonStock.toFixed(2);
+        document.getElementById('carbonCreditsKg').textContent = carbonCreditsKg.toFixed(2);
+        document.getElementById('carbonCreditsTons').textContent = carbonCreditsTons.toFixed(4);
+
+      } catch (e) {
+        document.getElementById('biomass').textContent = "Error";
+      }
+    }
+
+    window.onload = function () {
+      const select = document.getElementById('species');
+      MAPPING.forEach(item => {
+        const speciesName = STRINGS[item.s];
+        const option = document.createElement('option');
+        option.value = item.s;
+        option.textContent = speciesName;
+        select.appendChild(option);
+      });
+
+      // Add event listeners
+      document.getElementById('species').addEventListener('change', calculate);
+      document.getElementById('dbh').addEventListener('input', calculate);
+      document.getElementById('height').addEventListener('input', calculate);
+    };
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>Pakistan Forest Trees Carbon Calculator</h1>
+  </header>
+  <main>
+    <div class="card">
+      <label for="species">Tree Species</label>
+      <select id="species">
+        <option value="" disabled selected>Select a species...</option>
+      </select>
+
+      <label for="dbh">DBH (Diameter at Breast Height) [cm]</label>
+      <input type="number" id="dbh" placeholder="e.g. 30" inputmode="decimal">
+
+      <label for="height">Tree Height [m]</label>
+      <input type="number" id="height" placeholder="e.g. 15" inputmode="decimal">
+    </div>
+
+    <div class="card result-card">
+      <div class="result-item">
+        <div class="result-label">Biomass</div>
+        <div class="result-value" id="biomass">0.00</div>
+        <div class="result-unit">kg</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Carbon Stock</div>
+        <div class="result-value" id="carbonStock">0.00</div>
+        <div class="result-unit">kg (Tree * 0.47)</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Carbon Credits</div>
+        <div class="result-value" id="carbonCreditsKg">0.00</div>
+        <div class="result-unit">kg (Stock * 3.63)</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Carbon Credits</div>
+        <div class="result-value" id="carbonCreditsTons">0.0000</div>
+        <div class="result-unit">tons</div>
+      </div>
+    </div>
+
+    <div class="card info-card">
+      <h2>Pakistan Trees Carbon Calculator</h2>
+      <p>The Pakistan Forest Trees Carbon Calculator is based on tree species-specific allometric equations developed by
+        <strong>Dr. Sami Ullah (Dr.rer.nat.)</strong>, Associate Professor of Digital Forestry and Chairman, Department
+        of Forestry and Wildlife Management, The University of Haripur, Khyber Pukhtunkhwa, Pakistan.
+      </p>
+      <p>Dr. Sami Ullah also serves as Co-Principal Investigator (Co-PI) in the Forest Resource Assessment Section,
+        G-SAB Lab, National Center of GIS and Space Application.</p>
+
+      <h3>Sponsored by</h3>
+      <ul>
+        <li>Pakistan Academy of Sciences</li>
+        <li>Forest Resource Assessment Section, National Center of GIS and Space Application</li>
+        <li>Higher Education Commission (HEC), Pakistan</li>
+        <li>Ministry of Climate Change, Pakistan</li>
+        <li>The University of Haripur</li>
+        <li>Kohsar University Murree</li>
+      </ul>
+
+      <h3>Contact</h3>
+      <p>
+        📧 <a href="mailto:samiullah.forestry@uoh.edu.pk">samiullah.forestry@uoh.edu.pk</a><br>
+        📧 <a href="mailto:samidawar@gmail.com">samidawar@gmail.com</a>
+      </p>
+    </div>
+  </main>
+  <footer>
+    <p>Biomass Calculator PWA - Source Data Embedded</p>
+  </footer>
+</body>
+
+</html>

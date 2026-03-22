@@ -1,0 +1,21 @@
+{
+  "name": "Biomass Calculator",
+  "short_name": "BiomassCalc",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#2e7d32",
+  "theme_color": "#2e7d32",
+  "description": "Calculate Biomass, Carbon Stock, and Carbon Credits",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192.png?text=Tree",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512.png?text=Tree",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
