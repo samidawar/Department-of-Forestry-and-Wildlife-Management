@@ -104,75 +104,111 @@
 </head>
 
 <body>
-  <header>
+  <header class="main-header">
+    <div class="header-logo-left">
+      <img src="the university of haripur.png" alt="University of Haripur" class="header-logo uoh-logo">
+    </div>
     <h1>Pakistan Forest Trees Carbon Calculator</h1>
+    <div class="header-logo-right">
+      <img src="NCGSA-logo-HD-white-01-3-300x80.png" alt="NCGSA" class="header-logo">
+    </div>
   </header>
+  
   <main>
-    <div class="card">
-      <label for="species">Tree Species</label>
-      <select id="species">
-        <option value="" disabled selected>Select a species...</option>
-      </select>
-
-      <label for="dbh">DBH (Diameter at Breast Height) [cm]</label>
-      <input type="number" id="dbh" placeholder="e.g. 30" inputmode="decimal">
-
-      <label for="height">Tree Height [m]</label>
-      <input type="number" id="height" placeholder="e.g. 15" inputmode="decimal">
+    <div class="glass-card about-card">
+      <h2>About This Calculator</h2>
+      <p>The Pakistan Forest Trees Carbon Calculator is a scientifically developed tool designed to estimate <strong>above-ground biomass (AGB)</strong>, <strong>carbon stock</strong>, and <strong>carbon sequestration potential</strong> of forest tree species. The model uses species-specific allometric equations based on measurable tree parameters such as <strong>Diameter at Breast Height (DBH)</strong> and <strong>tree height</strong>. It supports applications in <strong>climate change studies</strong>, <strong>carbon accounting</strong>, <strong>forestry management</strong>, and <strong>environmental monitoring</strong>.</p>
     </div>
 
-    <div class="card result-card">
-      <div class="result-item">
-        <div class="result-label">Biomass</div>
-        <div class="result-value" id="biomass">0.00</div>
+    <div class="glass-card input-card">
+      <div class="input-group">
+        <label for="species">Tree Species</label>
+        <select id="species">
+          <option value="" disabled selected>Select a species...</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="dbh">DBH (cm)</label>
+        <input type="number" id="dbh" placeholder="e.g. 30" inputmode="decimal">
+      </div>
+
+      <div class="input-group">
+        <label for="height">Height (m)</label>
+        <input type="number" id="height" placeholder="e.g. 15" inputmode="decimal">
+      </div>
+    </div>
+
+    <div class="results-container">
+      <div class="glass-card result-box">
+        <h4>Biomass</h4>
+        <div class="result-value">
+          <span id="biomass">0.00</span>
+        </div>
         <div class="result-unit">kg</div>
+        <p class="result-desc">Biomass represents the <strong>total dry mass of a tree above ground</strong>, including the stem, branches, and foliage. It reflects the accumulated organic matter resulting from tree growth.</p>
       </div>
-      <div class="result-item">
-        <div class="result-label">Carbon Stock</div>
-        <div class="result-value" id="carbonStock">0.00</div>
-        <div class="result-unit">kg (Tree * 0.47)</div>
+      
+      <div class="glass-card result-box">
+        <h4>Carbon Stock</h4>
+        <div class="result-value">
+          <span id="carbonStock">0.00</span>
+        </div>
+        <div class="result-unit">kg</div>
+        <p class="result-desc">Carbon stock is the amount of carbon stored within the biomass. On average, <strong>47% of biomass consists of carbon</strong>, representing carbon captured from atmospheric CO₂ through photosynthesis.</p>
       </div>
-      <div class="result-item">
-        <div class="result-label">Carbon Credits</div>
-        <div class="result-value" id="carbonCreditsKg">0.00</div>
-        <div class="result-unit">kg (Stock * 3.63)</div>
+      
+      <div class="glass-card result-box">
+        <h4>Carbon (CO₂ Equivalent)</h4>
+        <div class="result-value">
+          <span id="carbonCreditsKg">0.00</span>
+        </div>
+        <div class="result-unit">kg CO₂</div>
+        <p class="result-desc">This converts stored carbon into <strong>carbon dioxide equivalent (CO₂)</strong>. It represents the total CO₂ removed from the atmosphere by the tree. Conversion factor ≈ 3.63.</p>
       </div>
-      <div class="result-item">
-        <div class="result-label">Carbon Credits</div>
-        <div class="result-value" id="carbonCreditsTons">0.0000</div>
-        <div class="result-unit">tons</div>
+      
+      <div class="glass-card result-box">
+        <h4>Carbon Credits</h4>
+        <div class="result-value">
+          <span id="carbonCreditsTons">0.0000</span>
+        </div>
+        <div class="result-unit">tons CO₂</div>
+        <p class="result-desc">Expressed in metric tons, this value represents the <strong>carbon offset potential</strong> used in climate reporting and carbon trading markets.</p>
       </div>
     </div>
 
-    <div class="card info-card">
-      <h2>Pakistan Trees Carbon Calculator</h2>
-      <p>The Pakistan Forest Trees Carbon Calculator is based on tree species-specific allometric equations developed by
-        <strong>Dr. Sami Ullah (Dr.rer.nat.)</strong>, Associate Professor of Digital Forestry and Chairman, Department
-        of Forestry and Wildlife Management, The University of Haripur, Khyber Pukhtunkhwa, Pakistan.
-      </p>
-      <p>Dr. Sami Ullah also serves as Co-Principal Investigator (Co-PI) in the Forest Resource Assessment Section,
-        G-SAB Lab, National Center of GIS and Space Application.</p>
+    <div class="glass-card author-card">
+      <div class="author-info">
+        <h3>Pakistan Trees Carbon Calculator</h3>
+        <p>The Pakistan Forest Trees Carbon Calculator is based on tree species-specific allometric equations developed by
+          <strong>Dr. Sami Ullah (Dr.rer.nat.)</strong>, Associate Professor of Digital Forestry and Chairman, Department
+          of Forestry and Wildlife Management, The University of Haripur, Khyber Pukhtunkhwa, Pakistan.
+        </p>
+        <p>Dr. Sami Ullah also serves as Co-Principal Investigator (Co-PI) in the Forest Resource Assessment Section,
+          G-SAB Lab, National Center of GIS and Space Application.</p>
+        
+        <h4>Sponsored by</h4>
+        <ul>
+          <li>Pakistan Academy of Sciences</li>
+          <li>Forest Resource Assessment Section, National Center of GIS and Space Application</li>
+          <li>Higher Education Commission (HEC), Pakistan</li>
+          <li>Ministry of Climate Change, Pakistan</li>
+          <li>The University of Haripur</li>
+          <li>Kohsar University Murree</li>
+        </ul>
 
-      <h3>Sponsored by</h3>
-      <ul>
-        <li>Pakistan Academy of Sciences</li>
-        <li>Forest Resource Assessment Section, National Center of GIS and Space Application</li>
-        <li>Higher Education Commission (HEC), Pakistan</li>
-        <li>Ministry of Climate Change, Pakistan</li>
-        <li>The University of Haripur</li>
-        <li>Kohsar University Murree</li>
-      </ul>
-
-      <h3>Contact</h3>
-      <p>
-        📧 <a href="mailto:samiullah.forestry@uoh.edu.pk">samiullah.forestry@uoh.edu.pk</a><br>
-        📧 <a href="mailto:samidawar@gmail.com">samidawar@gmail.com</a>
-      </p>
+        <h4>Contact</h4>
+        <p>
+          📧 <a href="mailto:samiullah.forestry@uoh.edu.pk">samiullah.forestry@uoh.edu.pk</a><br>
+          📧 <a href="mailto:samidawar@gmail.com">samidawar@gmail.com</a>
+        </p>
+      </div>
+      <div class="author-image-container">
+        <img src="my ID picture.png" alt="Dr. Sami Ullah" class="author-image">
+      </div>
     </div>
+
   </main>
-  <footer>
-    <p>Biomass Calculator PWA - Source Data Embedded</p>
-  </footer>
 </body>
 
 </html>
